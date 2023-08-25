@@ -1,0 +1,12 @@
+POST http://localhost:3000/cust
+Content-Type: application/json
+
+{
+  "path": "http://secuprime.com/recruit/202308_testdata.php"
+}
+
+###
+
+GET  http://localhost:3000/cust
+
+###
