@@ -20,16 +20,29 @@ jobs:
           token: ${{ secrets.CLOUDTYPE_TOKEN }}
           project: 91song4/cloudtype-test
           stage: main
-          yaml: |
+          yaml: >
             name: cloudtype-test
+
             app: node@18
+
             options:
               env:
                 - name: NODE_ENV
-                  value: production
+                  value: ${{secrets.NODE_ENV}}
+                - name: DATABASE_HOST
+                  value: ${{secrets.DATABASE_HOST}}
+                - name: DATABASE_PORT
+                  value: ${{secrets.DATABASE_PORT}}
+                - name: DATABASE_USERNAME
+                  value: ${{secrets.DATABASE_USERNAME}}
+                - name: DATABASE_PASSWORD
+                  value: ${{secrets.DATABASE_PASSWORD}}
+                - name: DATABASE_NAME
+                  value: ${{secrets.DATABASE_NAME}}
               ports: 3000
               build: npm run build
               start: npm run start:prod
+              install: npm ci
             context:
               git:
                 url: git@github.com:${{ github.repository }}.git
